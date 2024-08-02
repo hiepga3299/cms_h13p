@@ -1,14 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { login } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "../context/ToastContext";
 
 function Login() {
+  const navigate = useNavigate();
+  const { setToast } = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (payload) => {
-    console.log(payload);
+  const onSubmit = async (payload) => {
+    const response = await login(payload);
+    if (response === true) {
+      setToast("Đăng nhập thành công", "success");
+      navigate("/");
+    }
   };
   return (
     <section className="login__main flex justify-center items-center">
@@ -27,6 +36,7 @@ function Login() {
                 type="text"
                 id="username"
                 {...register("username", { required: true })}
+                autoFocus
               />
               {errors.username && (
                 <span className="text-xs text-red-500">
