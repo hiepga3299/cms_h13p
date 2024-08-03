@@ -1,15 +1,24 @@
 import React, { useEffect } from "react";
-import { useToast } from "../context/ToastContext";
 import { showNotification } from "../helper/showNotify";
+import { useSelector, useDispatch } from "react-redux";
+import { clearToast } from "../redux/toastSlice";
+// import { useToast } from "../context/ToastContext";
 
 function Dashboard() {
-  const { message, type, setMessage } = useToast();
+  // const { message, type } = useToast();
 
+  // useEffect(() => {
+  //   if (message) {
+  //     showNotification(message, type);
+  //   }
+  // }, [message, type]);
+
+  const { type, message } = useSelector((state) => state.toast);
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (message) {
-      showNotification(message, type);
-    }
-  }, [message, type, setMessage]);
+    showNotification(message, type);
+    dispatch(clearToast());
+  }, [type, message]);
 
   return <div>Dashboard</div>;
 }

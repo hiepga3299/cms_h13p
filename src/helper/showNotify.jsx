@@ -9,6 +9,6 @@ export const showNotification = (message, type) => {
       toast.error(message);
       break;
     default:
-      toast.info(message);
+      break;
   }
 };

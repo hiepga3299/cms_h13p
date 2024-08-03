@@ -2,11 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../services/authService";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "../context/ToastContext";
+// import { useToast } from "../context/ToastContext";
+import { useDispatch } from "react-redux";
+import { setToast } from "../redux/toastSlice";
 
 function Login() {
   const navigate = useNavigate();
-  const { setToast } = useToast();
+  const dispatch = useDispatch();
+  // const { setToast } = useToast();
   const {
     register,
     handleSubmit,
@@ -15,7 +18,8 @@ function Login() {
   const onSubmit = async (payload) => {
     const response = await login(payload);
     if (response === true) {
-      setToast("Đăng nhập thành công", "success");
+      // setToast("Đăng nhập thành công", "success");
+      dispatch(setToast({ message: "Đăng nhập thành công", type: "success" }));
       navigate("/");
     }
   };
