@@ -8,7 +8,9 @@ import { ToastContainer } from "react-toastify";
 import { ToastProvider } from "./context/ToastContext.jsx";
 import { store } from "./redux/store.jsx";
 import { Provider } from "react-redux";
-import Layout from "./layout/Layout.jsx";
+import User from "./page/User";
+import PrivateRoute from "./router/PrivateRoute";
+import Layout from "./layout/Layout";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -16,9 +18,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/user" element={<User />} />
+            </Route>
           </Route>
+
+          {/* <Route element={<Layout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/user" element={<User />} />
+          </Route> */}
         </Routes>
       </BrowserRouter>
       <ToastContainer />
