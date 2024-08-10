@@ -143,6 +143,26 @@ body {
 .layout__main {
   width: 100%;
 }
+
+.layout__header {
+  left: 192px;
+  overflow: hidden;
+  padding-right: 190px;
+}
+.layout__content {
+  display: flex;
+  background-color: white;
+  border-radius: 20px;
+  margin: 80px 10px 0 202px;
+  justify-content: center;
+  align-items: center;
+}
+.layout__footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: black;
+}
 .sidebar__logo {
   border-bottom: 0.1rem solid white;
   margin: 0 8px 0 8px;
