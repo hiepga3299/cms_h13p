@@ -7,12 +7,12 @@ import Footer from "./Footer";
 const Layout = () => {
   return (
     <div className="layout__wapper">
-      <div className="layout__content flex">
-        <div className="layout__sidebar">
+      <div className="layout__container flex">
+        <div className="layout__sidebar fixed">
           <Sidebar />
         </div>
         <div className="layout__main">
-          <div className="layout__header bg-white w-full">
+          <div className="layout__header bg-white w-full fixed">
             <Header />
           </div>
           <div className="layout__content">
