@@ -21,8 +21,8 @@ import {
 } from "@/components/ui/card";
 
 const User = () => {
-  const handleStatus = () => {
-    console.log(123);
+  const handleStatus = (e) => {
+    // console.log(e);
   };
   return (
     <div className="w-9/12 mt-3 mb-3">

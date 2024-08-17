@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { setAuth } from "../redux/authSlice";
+import { checkUser } from "@/services/userService";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = () => {
   // Add your authentication logic here
-  const isAuthenticated = true;
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  const { isAuthentication } = useSelector((state) => state.auth);
+  return isAuthentication ? <Outlet /> : <Navigate to="/login" />;
 };
 export default PrivateRoute;

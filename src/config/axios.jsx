@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:5055/api";
@@ -19,6 +20,9 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
+    if (error.response.status === 401) {
+      window.location = "/login";
+    }
     return Promise.reject(error);
   }
 );
